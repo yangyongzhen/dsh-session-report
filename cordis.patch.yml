@@ -1,0 +1,20 @@
+# dsh-session-report bundle patch: session cost/usage report cards.
+#
+# Mounts the reporter over any base profile. When a turn ends, the plugin
+# waits debounceMs of quiet, then writes a Markdown report (token usage with
+# cache-hit ratio, per-turn breakdown, tool-call frequency, errors, optional
+# cost estimate) to $DSH_HOME/reports/.
+#
+# Configuration (via the profile's cordis.patch.yml or --patch overlays):
+#   - id: report
+#     config:
+#       enabled: true
+#       outDir: /path/to/dir
+#       debounceMs: 1000
+#       costPerMInput: 1.2    # 可选：每百万输入 token 价格（元），配置后估算成本
+#       costPerMOutput: 4.0   # 可选：每百万输出 token 价格（元）
+
+- insert:
+    - id: report
+      name: 'dsh-session-report'
+      inject: [sessions]
