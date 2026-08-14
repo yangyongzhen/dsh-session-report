@@ -1,0 +1,6 @@
+- id: report
+  config:
+    enabled: true
+    costPerMInput: 1.2
+    costPerMOutput: 4.0
+    debounceMs: 500
